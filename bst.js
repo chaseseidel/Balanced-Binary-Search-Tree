@@ -84,7 +84,17 @@ export default class BST {
   }
 
   find(value) {
-    //TODO
+    let current = this.root;
+
+    while (current.data != value && current.data != null) {
+      if (value < current.data) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+
+    return current;
   }
 }
 

@@ -49,17 +49,15 @@ export default class BST {
     }
   }
 
-  delete(value) {
-    this.root = this.deleteHelper(this.root, value);
-  }
-
-  deleteHelper(node, value) {
+  delete(value, node = this.root) {
     if (node === null) {
-      return null;
-    } else if (value < node.data) {
-      node.left = this.deleteHelper(node.left, value);
+      return node;
+    }
+
+    if (value < node.data) {
+      node.left = this.delete(value, node.left);
     } else if (value > node.data) {
-      node.right = this.deleteHelper(node.right, value);
+      node.right = this.delete(value, node.right);
     } else {
       if (node.left == null && node.right == null) {
         return null;
@@ -76,7 +74,7 @@ export default class BST {
           current = current.left;
         }
         node.data = parent.data;
-        node.right = this.deleteHelper(node.right, node.data);
+        node.right = this.delete(node.data, node.right);
       }
     }
 
@@ -96,6 +94,8 @@ export default class BST {
 
     return current;
   }
+
+  levelOrder(functionToCall) {}
 }
 
 function sortArray(array) {

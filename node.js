@@ -1,6 +1,6 @@
 export default class BSTNode {
-    constructor(value) {
-        this.value = value || null;
+    constructor(data) {
+        this.data = data || null;
         this.left = null;
         this.right = null;
     }

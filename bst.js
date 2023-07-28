@@ -95,7 +95,57 @@ export default class BST {
     return current;
   }
 
-  levelOrder(functionToCall) {}
+  levelOrder(func = createArray) {
+    const levelOrderArray = [];
+
+    if (this.root === null) {
+      return;
+    }
+
+    const queue = [];
+    queue.push(this.root);
+
+    while (queue.length != 0) {
+      let current = queue[0];
+      if (func != createArray) {
+        func(current);
+      } else {
+        func(levelOrderArray, current.data);
+      }
+      if (current.left !== null) {
+        queue.push(current.left);
+      }
+      if (current.right !== null) {
+        queue.push(current.right);
+      }
+
+      queue.shift();
+    }
+
+    if (func === createArray) {
+      return levelOrderArray;
+    }
+  }
+
+  inOrder(func = createArray, node = this.root, array = []) {
+    if (node === null) {
+      return;
+    }
+
+    this.inOrder(func, node.left, array);
+
+    if (func != createArray) {
+      func(node);
+    } else {
+      func(array, node.data);
+    }
+
+    this.inOrder(func, node.right, array);
+
+    if (func === createArray) {
+      return array;
+    }
+  }
 }
 
 function sortArray(array) {
@@ -106,6 +156,10 @@ function sortArray(array) {
 
   //Deletes duplicates
   return [...new Set(array)];
+}
+
+function createArray(array, value) {
+  array.push(value);
 }
 
 export const prettyPrint = (node, prefix = "", isLeft = true) => {

@@ -146,6 +146,44 @@ export default class BST {
       return array;
     }
   }
+
+  preOrder(func = createArray, node = this.root, array = []) {
+    if (node === null) {
+      return;
+    }
+
+    if (func != createArray) {
+      func(node);
+    } else {
+      func(array, node.data);
+    }
+
+    this.preOrder(func, node.left, array);
+    this.preOrder(func, node.right, array);
+
+    if (func === createArray) {
+      return array;
+    }
+  }
+
+  postOrder(func = createArray, node = this.root, array = []) {
+    if (node === null) {
+      return;
+    }
+
+    this.postOrder(func, node.left, array);
+    this.postOrder(func, node.right, array);
+
+    if (func != createArray) {
+      func(node);
+    } else {
+      func(array, node.data);
+    }
+
+    if (func === createArray) {
+      return array;
+    }
+  }
 }
 
 function sortArray(array) {

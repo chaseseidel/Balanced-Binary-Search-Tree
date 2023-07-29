@@ -184,6 +184,10 @@ export default class BST {
       return array;
     }
   }
+
+  height(node = this.root) {
+    
+  }
 }
 
 function sortArray(array) {

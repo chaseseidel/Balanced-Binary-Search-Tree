@@ -199,6 +199,25 @@ export default class BST {
       return rightHeight;
     }
   }
+
+  depth(node) {
+    let depth = 0;
+    let current = this.root;
+
+    while (current != null) {
+      if (node.data < current.data) {
+        current = current.left;
+        depth++;
+      } else if (node.data > current.data) {
+        current = current.right;
+        depth++;
+      } else {
+        break;
+      }
+    }
+
+    return depth;
+  }
 }
 
 function sortArray(array) {

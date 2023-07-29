@@ -14,7 +14,7 @@ export default class BST {
       return null;
     }
 
-    const mid = Math.floor((start + end) / 2);
+    const mid = parseInt((start + end) / 2);
     const root = new BSTNode(array[mid]);
 
     root.left = this.buildTree(array, start, mid - 1);

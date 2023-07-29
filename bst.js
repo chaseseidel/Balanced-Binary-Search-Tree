@@ -186,7 +186,18 @@ export default class BST {
   }
 
   height(node = this.root) {
-    
+    if (node === null) {
+      return -1;
+    }
+
+    let leftHeight = 1 + this.height(node.left);
+    let rightHeight = 1 + this.height(node.right);
+
+    if (leftHeight > rightHeight) {
+      return leftHeight;
+    } else {
+      return rightHeight;
+    }
   }
 }
 

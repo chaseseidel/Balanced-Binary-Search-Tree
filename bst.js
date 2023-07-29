@@ -190,8 +190,8 @@ export default class BST {
       return -1;
     }
 
-    let leftHeight = 1 + this.height(node.left);
-    let rightHeight = 1 + this.height(node.right);
+    const leftHeight = 1 + this.height(node.left);
+    const rightHeight = 1 + this.height(node.right);
 
     if (leftHeight > rightHeight) {
       return leftHeight;
@@ -217,6 +217,10 @@ export default class BST {
     }
 
     return depth;
+  }
+
+  isBalanced() {
+
   }
 }
 

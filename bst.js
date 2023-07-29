@@ -219,8 +219,27 @@ export default class BST {
     return depth;
   }
 
-  isBalanced() {
+  isBalanced(node = this.root) {
+    if (node === null) {
+      return;
+    }
 
+    this.isBalanced(node.left);
+    this.isBalanced(node.right);
+
+    const leftHeight = this.height(node.left);
+    const rightHeight = this.height(node.right);
+
+    if (leftHeight - rightHeight > 1 || rightHeight - leftHeight > 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  rebalance() {
+    const array = this.inOrder();
+    this.root = this.buildTree(array, 0, array.length - 1);
   }
 }
 
